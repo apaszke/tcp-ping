@@ -5,7 +5,6 @@ TCP ping utility for node.js. You can test if chosen adress accepts connections 
 
 #####Why not ```ping``` wrapper?
 
-* **It's multiplatform**
 * It's much faster than ```ping``` tool (as soon as connection gets accepted, it's dropped and a new measure is conducted immediately), so there's no unnecessary waiting between requests.
 * It allows you to test a specific service, not the whole connection
 * Some servers drop ICMP echo without any response, even when online. TCP can work in such cases.
