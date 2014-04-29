@@ -3,7 +3,7 @@ tcp-ping
 
 TCP ping utility for node.js. You can test if chosen adress accepts connections at desired port and find out your latency. Great for service availability testing.
 
-######Why not ```ping``` wrapper?
+#####Why not ```ping``` wrapper?
 
 * **It's multiplatform**
 * It's much faster than ```ping``` tool (as soon as connection gets accepted, it's dropped and a new measure is conducted immediately), so there's no unnecessary waiting between requests.
