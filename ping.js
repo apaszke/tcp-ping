@@ -25,7 +25,7 @@ var net = require('net');
 var ping = function(options, callback) {
     var i = 0;
     var results = [];
-    options.adress = options.adress || 'localhost';
+    options.address = options.address || 'localhost';
     options.port = options.port || 80;
     options.attempts = options.attempts || 10;
     options.timeout = options.timeout || 5000;
@@ -44,7 +44,7 @@ var ping = function(options, callback) {
             }, results[0].time);
             avg = avg / results.length;
             var out = {
-                adress: options.adress,
+                address: options.address,
                 port: options.port,
                 attempts: options.attempts,
                 avg: avg,
@@ -55,11 +55,11 @@ var ping = function(options, callback) {
             callback(undefined, out);
         }
     };
-    
+
     var connect = function(options, callback) {
         var s = new net.Socket();
         var start = process.hrtime();
-        s.connect(options.port, options.adress, function() {
+        s.connect(options.port, options.address, function() {
             var time_arr = process.hrtime(start);
             var time = (time_arr[0] * 1e9 + time_arr[1]) / 1e6;
             results.push({ seq: i, time: time });
@@ -75,7 +75,7 @@ var ping = function(options, callback) {
         });
         s.setTimeout(options.timeout, function() {
             results.push({seq: i, time: undefined, err: Error('Request timeout') });
-            s.destroy(); 
+            s.destroy();
             i++;
             check(options, callback);
         });
@@ -85,10 +85,10 @@ var ping = function(options, callback) {
 
 module.exports.ping = ping;
 
-module.exports.probe = function(adress, port, callback) {
-    adress = adress || 'localhost';
+module.exports.probe = function(address, port, callback) {
+    address = address || 'localhost';
     port = port || 80;
-    ping({ adress: adress, port: port, attempts: 1, timeout: 5000 }, function(err, data) {
+    ping({ address: address, port: port, attempts: 1, timeout: 5000 }, function(err, data) {
         var available = data.min !== undefined;
         callback(err, available);
     });

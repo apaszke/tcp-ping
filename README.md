@@ -1,7 +1,7 @@
 tcp-ping
 ========
 
-TCP ping utility for node.js. You can test if chosen adress accepts connections at desired port and find out your latency. Great for service availability testing.
+TCP ping utility for node.js. You can test if chosen address accepts connections at desired port and find out your latency. Great for service availability testing.
 
 #####Why not ```ping``` wrapper?
 
@@ -21,7 +21,7 @@ npm install tcp-ping
 
 ```options``` is an object, which may contain several properties:
 
-* adress (adress to ping; defaults to ```localhost```)
+* address (address to ping; defaults to ```localhost```)
 * port (defaults to ```80```)
 * timeout (in ms; defaults to 5s)
 * attempts (how many times to measure time; defaults to 10)
@@ -30,24 +30,24 @@ npm install tcp-ping
 
 Returned data is an object which looks like this:
 ```javascript
-{ 
-  adress: '46.28.246.123',
+{
+  address: '46.28.246.123',
   port: 80,
   attempts: 10,
   avg: 19.7848844,
   max: 35.306233,
   min: 16.526067,
-  results: 
-   [ 
+  results:
+   [
     { seq: 0, time: 35.306233 },
     { seq: 1, time: 16.585919 },
     ...
-    { seq: 9, time: 17.625968 } 
-   ] 
+    { seq: 9, time: 17.625968 }
+   ]
 }
 ```
 
-#####probe(adress, port, callback)
+#####probe(address, port, callback)
 ```callback``` is a node style callback ```function(err, data)```, where data is true if the server is available and false otherwise.
 
 ###Usage
@@ -59,7 +59,7 @@ tcpp.probe('46.28.246.123', 80, function(err, available) {
     console.log(available);
 });
 
-tcpp.ping({ adress: '46.28.246.123' }, function(err, data) {
+tcpp.ping({ address: '46.28.246.123' }, function(err, data) {
     console.log(data);
 });
 ```
