@@ -50,6 +50,12 @@ Returned data is an object which looks like this:
 ##### probe(address, port, callback)
 `callback` is a node style callback `function(err, data)`, where data is true if the server is available and false otherwise.
 
+##### pingAsync(options)
+Same with ping function but returns Promise instead of Callback.
+
+##### probeAsync(address, port, callback)
+Same with probe function but returns Promise instead of Callback.
+
 ### Usage
 
 ```javascript
