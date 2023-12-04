@@ -42,7 +42,15 @@ var ping = function(options, callback) {
             var min = results.reduce(function(prev, curr) {
                 return (prev < curr.time) ? prev : curr.time;
             }, results[0].time);
+            var dropped = results.reduce(function(prev, curr) {
+                return (curr.err) ? prev + 1 : prev;
+            }, 0);
+            var success_avg = results.reduce(function(prev, curr) {
+                if (curr.err) return prev;
+                return prev + curr.time;
+            }, 0);
             avg = avg / results.length;
+            success_avg = success_avg / (results.length - dropped);
             var out = {
                 address: options.address,
                 port: options.port,
@@ -50,6 +58,8 @@ var ping = function(options, callback) {
                 avg: avg,
                 max: max,
                 min: min,
+                dropped: dropped,
+                success_avg: success_avg,
                 results: results
             };
             callback(undefined, out);
