@@ -37,6 +37,8 @@ Returned data is an object which looks like this:
   avg: 19.7848844,
   max: 35.306233,
   min: 16.526067,
+  dropped: 0,
+  success_avg: 19.7848844,
   results:
    [
     { seq: 0, time: 35.306233 },
